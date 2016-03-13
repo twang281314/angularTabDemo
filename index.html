@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS: UI-Router Quick Start</title>
+    <!-- Bootstrap CSS -->
+    <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.bootcss.com/bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<body class="container">
+    <div ui-view></div>
+    <!-- jQuery -->
+    <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <!-- Angular -->
+    <script src="http://cdn.bootcss.com/angular.js/1.5.0/angular.js"></script>
+    <!-- UI-Router -->
+    <script src="http://cdn.bootcss.com/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <!-- App Script -->
+    <script>
+    var myapp = angular.module('myapp', ["ui.router"])
+    myapp.config(function($stateProvider, $urlRouterProvider) {
+
+        // For any unmatched url, send to /route1
+        $urlRouterProvider.otherwise("/wc")
+
+        $stateProvider
+            .state('wc', {
+                url: "/wc",
+                templateUrl: "views/route.html",
+                controller: 'tabDemoCtrl'
+            })
+            .state('wc.tab', {
+                url: '/tab',
+                views: {
+                    'route1': {
+                        templateUrl: 'views/route1.html',
+                        controller: 'route1Ctrl'
+                    },
+                    'route2': {
+                        templateUrl: 'views/route2.html',
+                        controller: 'route2Ctrl'
+                    },
+                    'route3': {
+                        templateUrl: 'views/route3.html',
+                        controller: 'route3Ctrl'
+                    },
+                    'route4': {
+                        templateUrl: 'views/route4.html',
+                        controller: 'route4Ctrl'
+                    },
+                    'route5': {
+                        templateUrl: 'views/route5.html',
+                        controller: 'route5Ctrl'
+                    }
+                }
+            })
+            // .state('wc.route1', {
+            //     url: "/route1",
+            //     templateUrl: "/views/route1.html",
+            //     controller: 'route1Ctrl'
+            // })
+            // .state('wc.route2', {
+            //     url: "/route2",
+            //     templateUrl: "/views/route2.html",
+            //     controller: 'route2Ctrl'
+            // })
+            // .state('wc.route3', {
+            //     url: "/route3",
+            //     templateUrl: "/views/route3.html",
+            //     controller: 'route3Ctrl'
+            // })
+            // .state('wc.route4', {
+            //     url: "/route4",
+            //     templateUrl: "/views/route4.html",
+            //     controller: 'route4Ctrl'
+            // })
+            // .state('wc.route5', {
+            //     url: "/route5",
+            //     templateUrl: "/views/route5.html",
+            //     controller: 'route5Ctrl'
+            // })
+    });
+    myapp.controller('tabDemoCtrl', function($scope, $http) {
+        $scope.id;
+        $scope.tapItems = [];
+        $scope.refresh;
+        $scope.model = {};
+        $scope.ifShow = function(data, evt) {
+            $scope.id = data.id;
+            $scope.refresh();
+        }
+        $scope.chaceItem = function(data, evt) {
+            if ($.inArray(data, $scope.tapItems) === -1) {
+                $scope.ifShow(data, evt);
+                $scope.tapItems.push(data);
+            };
+        }
+        $scope.refresh = function() {
+            $http({
+                method: 'GET',
+                url: 'http://trirand.com/blog/phpjqgrid/examples/jsonp/getjsonp.php?callback=?&qwery=longorders',
+                headers: {
+                    // SessionId: sessionStorage.getItem("SessionID")
+                },
+                params: '',
+                data: ''
+            }).success(function(data) {
+                $scope.model.test = data
+
+            }).error(function(data) {})
+        }
+        $scope.Routes = [{
+            Base: "wc.tab",
+            id: '1',
+            url: "route1",
+            Name: "路由1"
+        }, {
+            Base: "wc.tab",
+            id: '2',
+            url: "route2",
+            Name: "路由2"
+        }, {
+            Base: "wc.tab",
+            id: '3',
+            url: "route3",
+            Name: "路由3"
+        }, {
+            Base: "wc.tab",
+            id: '4',
+            url: "route4",
+            Name: "路由4"
+        }, {
+            Base: "wc.tab",
+            id: '5',
+            url: "route5",
+            Name: "路由5"
+        }]
+    });
+    myapp.controller('route1Ctrl', function($scope, $http) {
+        $scope.model = {}
+        $http({
+            method: 'GET',
+            url: 'http://trirand.com/blog/phpjqgrid/examples/jsonp/getjsonp.php?callback=?&qwery=longorders',
+            headers: {
+                // SessionId: sessionStorage.getItem("SessionID")
+            },
+            params: '',
+            data: ''
+        }).success(function(data) {
+            $scope.model.test = data
+
+        }).error(function(data) {})
+
+    })
+    myapp.controller('route2Ctrl', function($scope) {
+        $scope.model = {}
+
+    })
+    myapp.controller('route3Ctrl', function($scope) {
+        $scope.model = {}
+
+    })
+    myapp.controller('route4Ctrl', function($scope) {
+        $scope.model = {}
+
+    })
+    myapp.controller('route5Ctrl', function($scope) {
+        $scope.model = {}
+
+    })
+    </script>
+</body>
+
+</html>

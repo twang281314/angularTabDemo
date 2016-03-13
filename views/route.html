@@ -1,0 +1,30 @@
+<div class="container-fluid" ng-controller="tabDemoCtrl">
+    <div class="row-fluid">
+        <div class="span2">
+            <!--Sidebar content-->
+            <div class="col-md-4">
+                <ul class="nav nav-tabs nav-stacked">
+                    <li ng-repeat="route in Routes track by $index" role="presentation" class="active">
+                        <a ng-bind="route.Name" ui-sref="{{route.Base}}" ng-click="chaceItem(route, $event)"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="span10">
+            <!--Body content-->
+            <ul class="nav nav-tabs">
+                <li ng-repeat="tab in tapItems track by $index" role="presentation" class="active">
+                    <a ng-bind="tab.Name" ui-sref="{{tab.Base}}" ng-click="ifShow(tab, $event)"></a>
+                </li>
+                <div class="row">
+                    <div class="span12">
+                        <div ng-repeat="tab in tapItems track by $index" ng-show="id === tab.id">
+                            <div ui-view="{{tab.url}}" class="well"></div>
+                            <div ng-bind="tab.url"></div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
