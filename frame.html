@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html ng-app="myapp">
 
 <head>
@@ -8,24 +8,11 @@
     <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://cdn.bootcss.com/bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
 
-
     <body class="container">
-        <section id="frames_area" class="frames_area" ng-controller="MainFramesCtrl">
-            <nav id="frames_nav" class="frames_nav">
-                <ul class="nav nav-tabs">
-                    <li ng-repeat="f in frames track by f.id" ng-click="alert('')">
-                        <a ng-bind="f.name" ng-click="ifShow(f, $event)"></a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="row">
-                <iframe width='1000' height="500" 
-                    ng-repeat="f in frames track by f.id"
-                    ng-src="{{f.src}}" 
-                    id="{{f.id}}"
-                    ng-show="id === f.id"></iframe>
-            </div>
-        </section>
+          
+      <div ui-view>
+            <h1 class="frame_bger" id="frame_bger">Loading ... </h1>
+      </div>
         <!-- jQuery -->
         <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
         <!-- Angular -->
