@@ -15,6 +15,7 @@
                 <ul class="nav nav-tabs">
                     <li ng-repeat="f in frames track by f.id" ng-click="alert('')">
                         <a ng-bind="f.name" ng-click="ifShow(f, $event)"></a>
+                        <a ng-click="close($index,$event)">close</a>
                     </li>
                 </ul>
             </nav>

@@ -43,31 +43,6 @@
                             }
                         }
                     })
-                    // .state('wc.route1', {
-                    //     url: "/route1",
-                    //     templateUrl: "/views/route1.html",
-                    //     controller: 'route1Ctrl'
-                    // })
-                    // .state('wc.route2', {
-                    //     url: "/route2",
-                    //     templateUrl: "/views/route2.html",
-                    //     controller: 'route2Ctrl'
-                    // })
-                    // .state('wc.route3', {
-                    //     url: "/route3",
-                    //     templateUrl: "/views/route3.html",
-                    //     controller: 'route3Ctrl'
-                    // })
-                    // .state('wc.route4', {
-                    //     url: "/route4",
-                    //     templateUrl: "/views/route4.html",
-                    //     controller: 'route4Ctrl'
-                    // })
-                    // .state('wc.route5', {
-                    //     url: "/route5",
-                    //     templateUrl: "/views/route5.html",
-                    //     controller: 'route5Ctrl'
-                    // })
             });
             myapp.controller('tabDemoCtrl', function($scope, $http) {
                 $scope.id;
@@ -158,30 +133,30 @@
 
             })
             myapp.controller('MainFramesCtrl', function($scope) {
-                
-                $scope.ifShow = function(data, evt) {
-                
-                $scope.id = data.id;
-                }
-                $scope.frames = {
-                    1: {
-                        "id": 1,
-                        "name": "Mela Sarkar",
-                        "src": "frame.html#test",
-                        "description": "A professional portfolio site for McGill University professor Mela Sarkar."
-                    },
 
-                    2: {
-                        "id": 2,
-                        "name": "Good Watching",
-                        "src": "frame.html#test2",
-                        "description": "Weekend experiment to help my mom decide what to watch."
-                    },
-                    3: {
-                        "id": 3,
-                        "name": "Good Watching",
-                        "src": "frame.html#test5",
-                        "description": "Weekend experiment to help my mom decide what to watch."
-                    }
-                };
+                $scope.ifShow = function(data, evt) {
+
+                    $scope.id = data.id;
+                }
+
+                $scope.close = function(index, evt) {
+
+                    $scope.frames.splice(index, 1);
+                }
+                $scope.frames = [{
+                    "id": 1,
+                    "name": "Mela Sarkar",
+                    "src": "frame.html#test",
+                    "description": "A professional portfolio site for McGill University professor Mela Sarkar."
+                }, {
+                    "id": 2,
+                    "name": "Good Watching",
+                    "src": "frame.html#test2",
+                    "description": "Weekend experiment to help my mom decide what to watch."
+                }, {
+                    "id": 3,
+                    "name": "Good Watching",
+                    "src": "frame.html#test5",
+                    "description": "Weekend experiment to help my mom decide what to watch."
+                }];
             })
